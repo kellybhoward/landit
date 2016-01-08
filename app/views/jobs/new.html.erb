@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col s12 m10 offset-m1 l8 offset-l2 card">
+        <div class="container">
+            <form action="/jobs" method="post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+                <h4 class="center-align">Job Information</h4>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix light-blue-text">business_center</i>
+                    <input type="text" name="company_name" placeholder="Company Name" class="validate"/>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix light-blue-text">http</i>
+                    <label class="active" for="comp_url">Company URL</label>
+                    <input type="text" id="comp_url" name="company_url" value="http://"/>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix light-blue-text">person</i>
+                    <input type="text" name="position" placeholder="Position Title" class="validate"/>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix light-blue-text">insert_drive_file</i>
+                    <label class="active" for="app_url">Application URL</label>
+                    <input type="text" id="app_url" name="application_url" value="http://"/>
+                </div>
+                <div class="row">
+                    <div class="input-field col s7">
+                        <i class="material-icons prefix light-blue-text">place</i>
+                        <input type="text" name="city" placeholder="City" class="validate"/>
+                    </div>
+                    <div class="input-field col s5">
+                        <select name="state" class="validate">
+                            <option value="" disabled selected>Choose State</option>
+                            <% @states.each do |state| %>
+                                <option class="light-blue-text" value="<%=state.id%>"><%=state.state_name%></option>
+                            <% end %>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        <a href="/"><button type="button" class="btn orange lighten-1" name="back">Go Back</button></a>
+                    </div>
+                    <div class="col s6">
+                        <input type="submit" class="btn green right" name="add" value="Add Job"/>
+                    </div>
+                </div>
+            </form>
+            <div class="error center-align red-text flow-text">
+                <% flash.each do |name, msg| %>
+                <% if msg.is_a?(String) %>
+                <%= content_tag :p, msg %>
+                <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select').material_select();
+    });
+</script>

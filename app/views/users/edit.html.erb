@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col s12 m8 offset-m2 l6 offset-l3 card">
+        <div class="container">
+            <form action="/users/<%=@user.id%>" method="post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+                <input type="hidden" name="_method" value="patch"/>
+                <input type="text" name="first_name" value="<%=@user.first_name%>"/>
+                <input type="text" name="last_name" value="<%=@user.last_name%>"/>
+                <input type="email" name="email" value="<%=@user.email%>"/>
+
+                <div class="row">
+                    <div class="col s6">
+                        <a href="/"><button type="button" class="btn orange lighten-1" name="back">Go Back</button></a>
+                    </div>
+                    <div class="col s6">
+                        <input type="submit" class="btn right green" name="update_account" value="Update Account"/>
+                    </div>
+                </div>
+            </form>
+
+            <div class="error center-align red-text flow-text">
+                <% flash.each do |name, msg| %>
+                <% if msg.is_a?(String) %>
+                <%= content_tag :p, msg %>
+                <% end %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

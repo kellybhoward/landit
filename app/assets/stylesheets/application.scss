@@ -1,0 +1,6 @@
+@import "materialize/components/color";
+$primary-color: color("blue", "lighten-2") !default;
+@import 'materialize';
+@import url(https://fonts.googleapis.com/css?family=Raleway|Poiret+One);
+@import 'main.css.scss';
+@import 'material_icons';

@@ -1,0 +1,224 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face {
+    font-family: 'Hobo Std';
+    src: font-url('hobo_std_medium.eot');
+    src: font-url('hobo_std_medium.ttf') format('truetype');
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow-x: hidden;
+
+//=======================================================
+
+    header{
+        height: 320px;
+        .grass_block, .sky_block{
+            width: 100%;
+        }
+        .grass_block{
+            background-color: #00951B;
+            height: 136px;
+        }
+        .sky_block{
+            background-color: #33CCFF;
+            height: 184px;
+        }
+        .header_img{
+            height: 320px;
+            width: auto;
+            position: absolute;
+            top: 0;
+        }
+        .static_header{
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+        }
+        .heading{
+            font-family: 'Hobo Std', sans-serif;
+            position: absolute;
+            top: 0;
+            // margin-left: 15px;
+            width: 100%;
+            h1{
+                margin-bottom: -10px;
+                // color: #f4aa04;
+                // color: black;
+                // text-shadow: -1px 0 #00951B, 0 1px #00951B, 1px 0 #00951B, 0 -1px #00951B;
+            }
+            p{
+                font-size: 1.6rem;
+                margin-right: 30px;
+            }
+        }
+    }
+
+//=======================================================
+
+    main {
+        flex: 1 0 auto;
+        font-family: 'Raleway', sans-serif;
+        padding-top: 10px;
+        .click-to-toggle{
+            position: absolute !important;
+        }
+        .welcome{
+            padding: 20px;
+            h4{
+                padding: 0px;
+                margin: 0px;
+            }
+            p{
+                margin-left: 20px;
+            }
+        }
+        .coming{
+            font-family: 'Hobo Std', sans-serif;
+        }
+        .shoutout{
+            padding-bottom: 60px !important;
+        }
+        .card{
+            padding: 20px 0px !important;
+        }
+        a{
+            color: #33CCFF;
+        }
+        a:hover{
+            color: #2495bb;
+        }
+        .space{
+            padding-top: 10px;
+            a{
+                display: block;
+            }
+        }
+        .dropdown-content li>span
+        {
+            color: #33CCFF;
+        }
+        input[type=url]:focus:not([readonly]),
+        input[type=text]:focus:not([readonly]){
+            border-bottom: 1px solid #33CCFF;
+            box-shadow: 0 1px 0 0 #33CCFF;
+        }
+        .jobs{
+            a{
+                color: white;
+            }
+            a:hover{
+                color: #b7ebfc;
+            }
+            p{
+                padding: 0px;
+            }
+            .input-field .prefix.active{
+                color: black;
+            }
+            .container i{
+                color: #5a9364;
+            }
+        }
+    }
+
+//=======================================================
+
+    footer{
+        background-color: #33CCFF !important;
+        bottom: 0;
+        span{
+            margin-left: 10px;
+        }
+        a{
+            margin: 6px 4px 0px 0px;
+        }
+        a:hover{
+            cursor: pointer;
+        }
+        .footer-copyright{
+            background-color: #00951B !important;
+            height: 80px;
+        }
+        .sun_logo{
+            padding: 0px;
+            margin: 0px;
+            text-align: center;
+            p{
+                margin: 0px;
+                font-family: 'Hobo Std', sans-serif;
+            }
+        }
+        .sun{
+            width: 100%;
+            vertical-align: bottom;
+        }
+        .social-media{
+            width: 40px;
+            height: 40px;
+            padding: 5px 5px 10px;
+            vertical-align: bottom;
+        }
+    }
+    .clear{
+        clear:both;
+    }
+}
+
+//=======================================================
+@media screen and (max-width: 479px) {
+    .heading{
+        margin-top: 110px;
+    }
+    .heading h1{
+        font-size: 7rem;
+    }
+}
+@media screen and (max-width: 320px) {
+    .heading{
+        margin-top: 100px;
+    }
+    .heading h1{
+        font-size: 6rem;
+    }
+}
+@media screen and (min-width: 480px) {
+    .heading{
+        margin-top: 100px;
+    }
+    .heading h1{
+        font-size: 9rem;
+    }
+}
+@media screen and (min-width: 620px) {
+    .heading{
+        margin-top: 100px;
+    }
+    .heading h1{
+        font-size: 10rem;
+    }
+}
+@media screen and (min-width: 700px) {
+    .heading{
+        margin-top: 90px;
+    }
+    .heading h1{
+        font-size: 11rem;
+    }
+}
+@media screen and (min-width: 900px) {
+    .heading{
+        margin-top: 60px;
+    }
+    .heading h1{
+        font-size: 12rem;
+    }
+}

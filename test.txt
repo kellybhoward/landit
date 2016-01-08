@@ -1,0 +1,36 @@
+rails g model Job user:references state:references company_name:string company_url:string position:string city:string application_url:string mission:text notes:text write_cv:boolean est_salary:int review_resume:boolean apply:boolean apply_time:timestamp confirmation:boolean interview:boolean interview_date:timestamp interview_notes:text offer:boolean salary:int offer_notes:text start_date:date accept:boolean
+
+
+rails g model Job
+user:references
+state:references
+
+<job form>
+company_name:string
+company_url:string
+position:string
+city:string
+application_url:string
+
+<research>
+mission:text
+notes:text
+est_salary:int
+
+<to-do>
+write_cv:boolean
+review_resume:boolean
+apply:boolean
+apply_time:timestamp
+
+<status>
+confirmation:boolean
+interview:boolean
+interview_date:timestamp
+interview_notes:text
+offer:boolean
+salary:int
+offer_notes:text
+start_date:date
+
+accept:boolean

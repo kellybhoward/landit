@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Land IT: Job Organizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= favicon_link_tag 'favicon/favicon.ico' %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="screen"/>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <meta name="author" content="Kelly Howard"/>
+    <meta name="description" content="A job search organizer to help land your dream job in the tech industry."/>
+    <meta name="keywords" content="Job, Search, Organizer, self-help, dream, landit"/>
+</head>
+<body>
+    <header>
+        <%= image_tag('landit_long_header.png', class: 'header_img')%>
+        <div class="heading center-align">
+            <h1 class="deep-purple-text">Land&nbsp;IT</h1>
+            <p class="flow-text">
+                job search organizer to help you land your dream IT job
+            </p>
+        </div>
+        <div class="static_header">
+            <div class="sky_block"></div>
+            <div class="grass_block"></div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <%= yield %>
+        </div>
+    </main>
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row sun_logo">
+                <div class="col s4">
+                    <p class="flow-text">enjoy today.</p>
+                </div>
+                <div class="col s4">
+                    <%= image_tag('sun_logo.png', class: "sun")%>
+                </div>
+                <div class="col s4">
+                    <p class="flow-text">just breathe.</p>
+                </div>
+
+            </div>
+            <!-- <div class="clear_sun"></div> -->
+        </div>
+        <div class="footer-copyright">
+                <span>© 2016 Kelly Brooke Howard</span>
+                <a class="btn-floating green right" href="https://developer.kellybhoward.com" target="_blank">
+                    <i class="material-icons">code</i>
+                </a>
+                <a class="btn-floating yellow right" href="https://www.linkedin.com/in/kellybhoward" target="_blank">
+                    <%= image_tag('linkedin.gif', class:'social-media')%>
+                </a>
+                <a class="btn-floating light-blue right" href="https://github.com/kellybhoward" target="_blank">
+                    <%= image_tag('git.gif', class:'social-media')%>
+                </a>
+                <a class="btn-floating orange right" href="https://twitter.com/greenfairy71131" target="_blank">
+                    <%= image_tag('twitter_logo.gif', class:'social-media')%>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
