@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: landit_production
-  username: landit
+  username: ubuntu
   password: <%= ENV['LANDIT_DATABASE_PASSWORD'] %>
