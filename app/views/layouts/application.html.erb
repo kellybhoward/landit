@@ -48,21 +48,33 @@
             <!-- <div class="clear_sun"></div> -->
         </div>
         <div class="footer-copyright">
-                <span>© 2016 Kelly Brooke Howard</span>
-                <a class="btn-floating green right" href="http://developer.kellybhoward.com" target="_blank">
-                    <i class="material-icons">code</i>
-                </a>
-                <a class="btn-floating yellow right" href="https://www.linkedin.com/in/kellybhoward" target="_blank">
-                    <%= image_tag('linkedin.gif', class:'social-media')%>
-                </a>
-                <a class="btn-floating light-blue right" href="https://github.com/kellybhoward" target="_blank">
-                    <%= image_tag('git.gif', class:'social-media')%>
-                </a>
-                <a class="btn-floating orange right" href="https://twitter.com/greenfairy71131" target="_blank">
-                    <%= image_tag('twitter_logo.gif', class:'social-media')%>
-                </a>
-            </div>
+            <span>© 2016 Kelly Brooke Howard</span>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                <input type="hidden" name="cmd" value="_donations">
+                <input type="hidden" name="business" value="kellybhoward@gmail.com">
+                <input type="hidden" name="lc" value="US">
+                <input type="hidden" name="item_name" value="LandIT by Kelly Howard`">
+                <input type="hidden" name="item_number" value="1">
+                <input type="hidden" name="no_note" value="0">
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+            <a class="btn-floating green right" href="http://developer.kellybhoward.com" target="_blank">
+                <i class="material-icons">code</i>
+            </a>
+            <a class="btn-floating yellow right" href="https://www.linkedin.com/in/kellybhoward" target="_blank">
+                <%= image_tag('linkedin.gif', class:'social-media')%>
+            </a>
+            <a class="btn-floating light-blue right" href="https://github.com/kellybhoward" target="_blank">
+                <%= image_tag('git.gif', class:'social-media')%>
+            </a>
+            <a class="btn-floating orange right" href="https://twitter.com/greenfairy71131" target="_blank">
+                <%= image_tag('twitter_logo.gif', class:'social-media')%>
+            </a>
         </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>
