@@ -40,13 +40,15 @@
                             </div>
                             <div class="collapsible-body">
                                 <div class="container">
-                                    <p><%= job.city %>, <%= job.state.state_code%></p>
-                                    <p><%= job.position %></p>
                                     <p>
-                                        <a href="<%=job.application_url%>" target="_blank" class="btn green lighten-2">Apply</a>
+                                        <%= job.city %>, <%= job.state.state_code%>
                                         <a href="/jobs/<%=job.id%>" data-confirm="Are you sure?" data-method='delete' class="delete"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Delete this job">delete</i></a>
                                         <a href="<%=job.company_url%>" target="_blank"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Visit Company's Site">public</i></a>
                                         <a href="/jobs/<%=job.id%>/edit"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Job Info">edit</i></a>
+                                    </p>
+                                    <p><%= job.position %></p>
+                                    <p>
+                                        <a href="<%=job.application_url%>" target="_blank" class="btn green lighten-2">Apply</a>
                                     </p>
                                     <div class="space"></div>
                                 </div>
@@ -228,15 +230,14 @@
                             </div>
                             <div class="collapsible-body">
                                 <div class="container">
-                                    <p><%= job.city %>, <%= job.state.state_code%></p>
-                                    <p><%= job.position %></p>
                                     <p>
-                                        <a href="<%=job.application_url%>" target="_blank" class="btn green lighten-2">Apply</a>
+                                        <%= job.city %>, <%= job.state.state_code%>
                                         <a href="/jobs/<%=job.id%>" data-confirm="Are you sure?" data-method='delete' class="delete"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Delete this job">delete</i></a>
                                         <a href="<%=job.company_url%>" target="_blank"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Visit Company's Site">public</i></a>
                                         <a href="/jobs/<%=job.id%>/edit"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Job Info">edit</i></a>
                                     </p>
-                                    <div class="space"></div>
+                                    <p><%= job.position %></p>
+                                    <div class="space clear"></div>
                                 </div>
                             </div>
                         </li>

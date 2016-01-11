@@ -15,7 +15,9 @@ body {
     min-height: 100vh;
     flex-direction: column;
     overflow-x: hidden;
-
+    .clear{
+        clear:both;
+    }
 //=======================================================
 
     header{
@@ -175,9 +177,6 @@ body {
             display: inline-block;
             vertical-align: bottom;
         }
-    }
-    .clear{
-        clear:both;
     }
 }
 
