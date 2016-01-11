@@ -68,8 +68,12 @@ body {
         flex: 1 0 auto;
         font-family: 'Raleway', sans-serif;
         padding-top: 10px;
+        .container{
+            width: 95% !important
+        }
         .click-to-toggle{
             position: absolute !important;
+            height: 55px;
         }
         .welcome{
             padding: 20px;
