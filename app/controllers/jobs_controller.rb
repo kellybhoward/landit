@@ -20,7 +20,11 @@ class JobsController < ApplicationController
 
     def edit
         @states = State.all
-        @job = Job.find(params[:id])
+        if correct_user_for_job
+            @job = Job.find(params[:id])
+        else
+            redirect_to '/'
+        end
     end
 
     def update_research

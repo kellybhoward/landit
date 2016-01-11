@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
     def current_user
         User.find(session[:id]) if session[:id]
     end
+    def correct_user_for_job
+        @job = Job.find(params[:id])
+        if @job.user_id != session[:id]
+            false
+        else
+            true
+        end
+    end
     helper_method :current_user
     protect_from_forgery with: :exception
 end
