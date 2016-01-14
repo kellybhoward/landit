@@ -27,6 +27,19 @@
         </div>
     </header>
     <main>
+        <% if session[:id]%>
+            <div class="fixed-action-btn horizontal click-to-toggle" style="top: 45px; right: 24px;">
+                <a class="btn-floating btn-large orange darken-2">
+                    <i class="large mdi-navigation-menu"></i>
+                </a>
+                <ul>
+                    <li><a class="btn-floating orange tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Account Info" href="/update-account"><i class="material-icons">perm_identity</i></a></li>
+                    <li><a href="/dashboard/compare_salaries" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Compare Salaries"><i class="material-icons">insert_chart</i></a></li>
+                    <li><a href="/dashboard/cover_letter" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Tips on Cover Letter"><i class="material-icons">description</i></a></li>
+                    <li><a class="btn-floating light-blue darken-3 tooltipped" data-position="top" data-delay="50" data-tooltip="Add a Job" href="/add-job"><i class="material-icons">add</i></a></li>
+                </ul>
+            </div>
+        <% end %>
         <div class="container">
             <%= yield %>
         </div>

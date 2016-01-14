@@ -23,7 +23,7 @@ class JobsController < ApplicationController
         if correct_user_for_job
             @job = Job.find(params[:id])
         else
-            redirect_to '/'
+            redirect_to "/"
         end
     end
 
@@ -47,8 +47,9 @@ class JobsController < ApplicationController
         if !@job
             flash[:error] = "Invalid Update - Please Try Again"
             redirect_to "/jobs/#{params[:id]}/edit"
+        else
+            redirect_to "/job-details/#{params[:id]}"
         end
-        redirect_to "/dashboard"
     end
 
     def update_reject
@@ -137,6 +138,6 @@ class JobsController < ApplicationController
             if !@job
                 flash[:error] = "Invalid Update - Please Try Again"
             end
-            redirect_to "/dashboard"
+            redirect_to "/job-details/#{@job.id}"
         end
 end

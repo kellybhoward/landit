@@ -108,6 +108,13 @@ body {
                 display: block;
             }
         }
+        .collection a.collection-item, .collection a.collection-item:not(.active):hover{
+            color:rgb(46, 103, 139);
+        }
+        .collection a.collection-item:not(.active):hover{
+            margin-left: 5px;
+            background-color: rgb(250, 209, 161);
+        }
         .dropdown-content li>span
         {
             color: #33CCFF;

@@ -1,24 +1,21 @@
-<div class="fixed-action-btn horizontal click-to-toggle" style="top: 45px; right: 24px;">
-    <a class="btn-floating btn-large orange darken-2">
-        <i class="large mdi-navigation-menu"></i>
-    </a>
-    <ul>
-        <li><a class="btn-floating orange tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Account Info" href="/update-account"><i class="material-icons">perm_identity</i></a></li>
-        <li><a href="/dashboard/compare_salaries" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Compare Salaries"><i class="material-icons">insert_chart</i></a></li>
-        <li><a href="/dashboard/cover_letter" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Tips on Cover Letter"><i class="material-icons">description</i></a></li>
-        <li><a class="btn-floating light-blue darken-3 tooltipped" data-position="top" data-delay="50" data-tooltip="Add a Job" href="/add-job"><i class="material-icons">add</i></a></li>
-    </ul>
-</div>
 <div class="welcome row">
-    <div class="col s12 m8">
+    <div class="col s12 m9">
         <h4>Welcome, <%= @user.first_name%></h4>
         <p>(not <%= @user.first_name%>? login <a href="/login">here</a>)</p>
     </div>
-    <div class="col s12 m4">
-        <a href="/logout"><button type="button" class="btn large orange lighten-1 right" name="logout">Logout</button></a>
+
+
+</div>
+<div class="row">
+    <div class="col s6">
+        <a href="/logout"><button type="button" class="btn large orange lighten-1" name="logout">Logout</button></a>
+    </div>
+    <div class="col s6">
+        <a href="/add-job"><button type="button" class="btn large light-blue darken-3 right" name="logout">Add job</button></a>
     </div>
 </div>
 <hr>
+
 <div class="row jobs">
     <% if @user.jobs.empty?%>
         <h4 class="center-align">Add a Job to Get Started!</h4>
@@ -26,374 +23,38 @@
             <a class="btn-floating light-blue darken-3" href="/add-job"><i class="material-icons">add</i></a>
         </p>
     <% else %>
-    <!-- make two columns that will eventually go s12 -->
-    <div class="col s12 l6">
-        <h4 class="center-align">Need to Apply</h4>
-        <% @user.jobs.sort.reverse.each do |job|%>
-            <% if job.apply.nil? || job.apply == false %>
-                <div class="col s12">
-                    <ul class="collapsible hoverable flow-text" data-collapsible="expandable">
-                        <li>
-                            <div class="active collapsible-header orange lighten-2">
-                                <i class="material-icons">info_outline</i>
-                                <p><%= job.company_name%></p>
-                            </div>
-                            <div class="collapsible-body">
-                                <div class="container">
-                                    <p>
-                                        <%= job.city %>, <%= job.state.state_code%>
-                                        <a href="/jobs/<%=job.id%>" data-confirm="Are you sure?" data-method='delete' class="delete"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Delete this job">delete</i></a>
-                                        <a href="<%=job.company_url%>" target="_blank"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Visit Company's Site">public</i></a>
-                                        <a href="/jobs/<%=job.id%>/edit"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Job Info">edit</i></a>
-                                    </p>
-                                    <p><%= job.position %></p>
-                                    <p>
-                                        <a href="<%=job.application_url%>" target="_blank" class="btn green lighten-2">Apply</a>
-                                    </p>
-                                    <div class="space"></div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header yellow lighten-2"><i class="material-icons">search</i>Research</div>
-                            <div class="collapsible-body container">
-                                <form action="/jobs/research/<%=job.id%>" method="post">
-                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
-                                    <input type="hidden" name="_method" value="patch"/>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <label for="mission<%=job.id%>" class="active">Mission Statement</label>
-                                            <textarea id="mission<%=job.id%>" class="materialize-textarea" name="mission" rows="8" cols="40"><%=job.mission%></textarea>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <label for="notes<%=job.id%>" class="active">Notes/Languages</label>
-                                            <textarea id="notes<%=job.id%>" class="materialize-textarea" name="notes" rows="8" cols="40"><%=job.notes%></textarea>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <p>Est. Salary:</p>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <i class="material-icons prefix">attach_money</i><input id="est_salary<%=job.id%>" type="text" name="est_salary" value="<%=job.est_salary%>" maxlength="6"/>
-                                        </div>
-                                    </div>
-                                    <input type="submit" class="small btn green right" name="update" value="Save"/>
-                                    <div class="clear space"></div>
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header green lighten-2"><i class="material-icons">done</i>Progress</div>
-                            <div class="collapsible-body container">
-                                <form action="/jobs/progress/<%=job.id%>" method="post">
-                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
-                                    <input type="hidden" name="_method" value="patch"/>
-                                    <% if job.write_cv %>
-                                        <p>
-                                            <input type="checkbox" id="cv<%=job.id%>" checked="checked" name="write_cv"/>
-                                            <label for="cv<%=job.id%>">Write CV</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="cv<%=job.id%>" name="write_cv"/>
-                                            <label for="cv<%=job.id%>">Write CV</label>
-                                        </p>
-                                    <% end %>
-                                    <% if job.review_resume %>
-                                        <p>
-                                            <input type="checkbox" id="resume<%=job.id%>" checked="checked" name="review_resume"/>
-                                            <label for="resume<%=job.id%>">Review Resume to Fit</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="resume<%=job.id%>" name="review_resume"/>
-                                            <label for="resume<%=job.id%>">Review Resume to Fit</label>
-                                        </p>
-                                    <% end %>
-                                    <% if job.apply %>
-                                        <p>
-                                            <input type="checkbox" id="apply<%=job.id%>" checked="checked" name="apply"/>
-                                            <label for="apply<%=job.id%>">Applied</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="apply<%=job.id%>" name="apply"/>
-                                            <label for="apply<%=job.id%>">Applied</label>
-                                        </p>
-                                    <% end %>
-                                    <div class="input-field">
-                                        <input id="apply_time<%=job.id%>" type="date" class="datepicker" name="apply_time" value="<%if job.apply_time%><%=job.apply_time.strftime('%A - %B %d, %Y')%><%end%>"/>
-                                        <label class="active" for="apply_time<%=job.id%>">Application Date</label>
-                                    </div>
-                                    <% if job.confirmation %>
-                                        <p>
-                                            <input type="checkbox" id="confirmation<%=job.id%>" checked="checked" name="confirmation"/>
-                                            <label for="confirmation<%=job.id%>">Receive Phone/Email Confirmation</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="confirmation<%=job.id%>" name="confirmation"/>
-                                            <label for="confirmation<%=job.id%>">Receive Phone/Email Confirmation</label>
-                                        </p>
-                                    <% end %>
-                                    <% if job.interview %>
-                                        <p>
-                                            <input type="checkbox" id="interview<%=job.id%>" checked="checked" name="confirmation"/>
-                                            <label for="interview<%=job.id%>">Asked to Interview</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="interview<%=job.id%>" name="confirmation" value=""/>
-                                            <label for="interview<%=job.id%>">Asked to Interview</label>
-                                        </p>
-                                    <% end %>
-                                    <div class="input-field">
-                                        <input id="interview_date<%=job.id%>" type="date" class="datepicker" name="interview_date" value="<%if job.interview_date%><%=job.interview_date.strftime('%A - %B %d, %Y')%><%end%>"/>
-                                        <label class="active" for="interview_date<%=job.id%>">Interview Date</label>
-                                    </div>
-                                    <div class="input-field">
-                                        <label for="interview_notes<%=job.id%>" class="active">Interview Notes (Time/Location/Questions)</label>
-                                        <textarea id="interview_notes<%=job.id%>" class="materialize-textarea" name="interview_notes" rows="8" cols="40"><%=job.interview_notes%></textarea>
-                                    </div>
-                                    <input type="submit" class="small btn green right" name="update" value="Save"/>
-                                    <div class="clear space"></div>
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header light-blue lighten-2"><i class="material-icons">attach_money</i>Offer</div>
-                            <div class="collapsible-body container">
-                                <form action="/jobs/offer/<%=job.id%>" method="post">
-                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
-                                    <input type="hidden" name="_method" value="patch"/>
-                                    <% if job.offer %>
-                                    <p>
-                                        <input type="checkbox" id="offer<%=job.id%>" checked="checked" name="offer"/>
-                                        <label for="offer<%=job.id%>">Got an Offer</label>
-                                    </p>
-                                    <div class="input-field">
-                                        <input id="start_date<%=job.id%>" type="date" class="datepicker" name="start_date" value="<%if job.start_date%><%=job.start_date.strftime('%A - %B %d, %Y')%><%end%>"/>
-                                        <label class="active" for="start_date<%=job.id%>" class="active">Start Date</label>
-                                    </div>
-                                    <div class="input-field col s5">
-                                        <p>Salary:</p>
-                                    </div>
-                                    <div class="input-field col s7">
-                                        <i class="material-icons prefix">attach_money</i><input id="salary<%=job.id%>" type="text" name="salary" value="<%=job.salary%>" maxlength="6"/>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <label for="offer_notes<%=job.id%>" class="active">Offer Notes</label>
-                                        <textarea id="offer_notes<%=job.id%>" class="materialize-textarea" name="offer_notes" rows="8" cols="40"><%=job.offer_notes%></textarea>
-                                    </div>
-                                    <p>
-                                        <input type="checkbox" id="accept<%=job.id%>" name="accept"/>
-                                        <label for="accept<%=job.id%>">Accept Offer</label>
-                                    </p>
-                                <% else%>
-                                    <p>
-                                        <input type="checkbox" id="offer<%=job.id%>" name="offer"/>
-                                        <label for="offer<%=job.id%>">Got an Offer</label>
-                                    </p>
-                                <% end %>
-                                <input type="submit" class="small btn green right" name="update" value="Save"/>
-                                <div class="clear space"></div>
-                            </form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            <% end %>
-        <% end %>
-    </div>
-    <div class="col s12 l6">
-        <h4 class="center-align">Applied</h4>
-        <% @user.jobs.sort.reverse.each do |job|%>
-            <% if job.accept %>
-                <div class="col s12 center-align">
-                    <h5>Congratulations on your new job!</h5>
-                    <div class="row">
-                        <div class="col s7">
-                            <a href="/users/<%=@user.id%>" data-confirm="Are you sure?" data-method='delete'><button type="button" class="btn large orange lighten-1" name="logout">Delete Account?</button></a>
-                        </div>
-                        <div class="col s5">
-                            <a href="/jobs/reject/<%=job.id%>"  data-method='patch'><button type="button" class="btn large green lighten-1" name="logout">Undo</button></a>
-                        </div>
-                    </div>
-
-                </div>
-            <% elsif job.apply %>
-                <div class="col s12">
-                    <ul class="collapsible hoverable flow-text" data-collapsible="expandable">
-                        <li>
-                            <div class="active collapsible-header orange lighten-2">
-                                <i class="material-icons">info_outline</i>
-                                <p><%= job.company_name%></p>
-                            </div>
-                            <div class="collapsible-body">
-                                <div class="container">
-                                    <p>
-                                        <%= job.city %>, <%= job.state.state_code%>
-                                        <a href="/jobs/<%=job.id%>" data-confirm="Are you sure?" data-method='delete' class="delete"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Delete this job">delete</i></a>
-                                        <a href="<%=job.company_url%>" target="_blank"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Visit Company's Site">public</i></a>
-                                        <a href="/jobs/<%=job.id%>/edit"><i class="material-icons right tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Job Info">edit</i></a>
-                                    </p>
-                                    <p><%= job.position %></p>
-                                    <div class="space clear"></div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header yellow lighten-2"><i class="material-icons">search</i>Research</div>
-                            <div class="collapsible-body container">
-                                <form action="/jobs/research/<%=job.id%>" method="post">
-                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
-                                    <input type="hidden" name="_method" value="patch"/>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <label for="mission<%=job.id%>" class="active">Mission Statement</label>
-                                            <textarea id="mission<%=job.id%>" class="materialize-textarea" name="mission" rows="8" cols="40"><%=job.mission%></textarea>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <label for="notes<%=job.id%>" class="active">Notes/Languages</label>
-                                            <textarea id="notes<%=job.id%>" class="materialize-textarea" name="notes" rows="8" cols="40"><%=job.notes%></textarea>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <p>Est. Salary:</p>
-                                        </div>
-                                        <div class="input-field col s6">
-                                            <i class="material-icons prefix">attach_money</i><input id="est_salary<%=job.id%>" type="text" name="est_salary" value="<%=job.est_salary%>" maxlength="6"/>
-                                        </div>
-                                    </div>
-                                    <input type="submit" class="small btn green right" name="update" value="Save"/>
-                                    <div class="clear space"></div>
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header green lighten-2"><i class="material-icons">done</i>Progress</div>
-                            <div class="collapsible-body container">
-                                <form action="/jobs/progress/<%=job.id%>" method="post">
-                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
-                                    <input type="hidden" name="_method" value="patch"/>
-                                    <% if job.write_cv %>
-                                        <p>
-                                            <input type="checkbox" id="cv<%=job.id%>" checked="checked" name="write_cv"/>
-                                            <label for="cv<%=job.id%>">Write CV</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="cv<%=job.id%>" name="write_cv"/>
-                                            <label for="cv<%=job.id%>">Write CV</label>
-                                        </p>
-                                    <% end %>
-                                    <% if job.review_resume %>
-                                        <p>
-                                            <input type="checkbox" id="resume<%=job.id%>" checked="checked" name="review_resume"/>
-                                            <label for="resume<%=job.id%>">Review Resume to Fit</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="resume<%=job.id%>" name="review_resume"/>
-                                            <label for="resume<%=job.id%>">Review Resume to Fit</label>
-                                        </p>
-                                    <% end %>
-                                    <% if job.apply %>
-                                        <p>
-                                            <input type="checkbox" id="apply<%=job.id%>" checked="checked" name="apply"/>
-                                            <label for="apply<%=job.id%>">Applied</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="apply<%=job.id%>" name="apply"/>
-                                            <label for="apply<%=job.id%>">Applied</label>
-                                        </p>
-                                    <% end %>
-                                    <div class="input-field">
-                                        <input id="apply_time<%=job.id%>" type="date" class="datepicker" name="apply_time" value="<%if job.apply_time%><%=job.apply_time.strftime('%A - %B %d, %Y')%><%end%>"/>
-                                        <label class="active" for="apply_time<%=job.id%>">Application Date</label>
-                                    </div>
-                                    <% if job.confirmation %>
-                                        <p>
-                                            <input type="checkbox" id="confirmation<%=job.id%>" checked="checked" name="confirmation"/>
-                                            <label for="confirmation<%=job.id%>">Receive Phone/Email Confirmation</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="confirmation<%=job.id%>" name="confirmation"/>
-                                            <label for="confirmation<%=job.id%>">Receive Phone/Email Confirmation</label>
-                                        </p>
-                                    <% end %>
-                                    <% if job.interview %>
-                                        <p>
-                                            <input type="checkbox" id="interview<%=job.id%>" checked="checked" name="confirmation"/>
-                                            <label for="interview<%=job.id%>">Asked to Interview</label>
-                                        </p>
-                                    <% else%>
-                                        <p>
-                                            <input type="checkbox" id="interview<%=job.id%>" name="confirmation" value=""/>
-                                            <label for="interview<%=job.id%>">Asked to Interview</label>
-                                        </p>
-                                    <% end %>
-                                    <div class="input-field">
-                                        <input id="interview_date<%=job.id%>" type="date" class="datepicker" name="interview_date" value="<%if job.interview_date%><%=job.interview_date.strftime('%A - %B %d, %Y')%><%end%>"/>
-                                        <label class="active" for="interview_date<%=job.id%>">Interview Date</label>
-                                    </div>
-                                    <div class="input-field">
-                                        <label for="interview_notes<%=job.id%>" class="active">Interview Notes (Time/Location/Questions)</label>
-                                        <textarea id="interview_notes<%=job.id%>" class="materialize-textarea" name="interview_notes" rows="8" cols="40"><%=job.interview_notes%></textarea>
-                                    </div>
-                                    <input type="submit" class="small btn green right" name="update" value="Save"/>
-                                    <div class="clear space"></div>
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header light-blue lighten-2"><i class="material-icons">attach_money</i>Offer</div>
-                            <div class="collapsible-body container">
-                                <form action="/jobs/offer/<%=job.id%>" method="post">
-                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
-                                    <input type="hidden" name="_method" value="patch"/>
-                                    <% if job.offer %>
-                                    <p>
-                                        <input type="checkbox" id="offer<%=job.id%>" checked="checked" name="offer"/>
-                                        <label for="offer<%=job.id%>">Got an Offer</label>
-                                    </p>
-                                    <div class="input-field">
-                                        <input id="start_date<%=job.id%>" type="date" class="datepicker" name="start_date" value="<%if job.start_date%><%=job.start_date.strftime('%A - %B %d, %Y')%><%end%>"/>
-                                        <label class="active" for="start_date<%=job.id%>" class="active">Start Date</label>
-                                    </div>
-                                    <div class="input-field col s5">
-                                        <p>Salary:</p>
-                                    </div>
-                                    <div class="input-field col s7">
-                                        <i class="material-icons prefix">attach_money</i><input id="salary<%=job.id%>" type="text" name="salary" value="<%=job.salary%>" maxlength="6"/>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <label for="offer_notes<%=job.id%>" class="active">Offer Notes</label>
-                                        <textarea id="offer_notes<%=job.id%>" class="materialize-textarea" name="offer_notes" rows="8" cols="40"><%=job.offer_notes%></textarea>
-                                    </div>
-                                    <p>
-                                        <input type="checkbox" id="accept<%=job.id%>" name="accept"/>
-                                        <label for="accept<%=job.id%>">Accept Offer</label>
-                                    </p>
-                                <% else%>
-                                    <p>
-                                        <input type="checkbox" id="offer<%=job.id%>" name="offer"/>
-                                        <label for="offer<%=job.id%>">Got an Offer</label>
-                                    </p>
-                                <% end %>
-                                <input type="submit" class="small btn green right" name="update" value="Save"/>
-                                <div class="clear space"></div>
-                            </form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <%end%>
-            <% end %>
-        <% end %>
-    </div>
+        <div class="col s12 m6 l4">
+            <h4 class="center-align">Need to Apply</h4>
+            <div class="collection">
+                <% @user.jobs.sort.reverse.each do |job|%>
+                    <% if (job.apply.nil? || job.apply == false) && (job.offer.nil? || job.offer == false) %>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <div class="col s12 m6 l4">
+            <h4 class="center-align">Applied</h4>
+            <div class="collection">
+                <% @user.jobs.sort.reverse.each do |job|%>
+                    <% if job.apply && job.apply == true && (job.offer.nil? || job.offer == false) %>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <div class="col s12 m6 l4">
+            <h4 class="center-align">Got an Offer</h4>
+            <div class="collection">
+                <% @user.jobs.sort.reverse.each do |job|%>
+                    <% if job.offer && job.offer == true %>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
 </div>
-
 <script type="text/javascript">
 $(document).ready(function(){
     $('select').material_select();

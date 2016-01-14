@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get '/update-account' => 'users#edit'
     patch '/users/:id' => 'users#update'
     delete '/users/:id' => 'users#destroy'
-
+    get '/job-details/:id' => 'users#show_job'
 
     get '/add-job' => 'jobs#new'
     post '/jobs' => 'jobs#create'

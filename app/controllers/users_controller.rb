@@ -43,6 +43,15 @@ class UsersController < ApplicationController
         @user = User.find(session[:id])
     end
 
+    def show_job
+        if correct_user_for_job
+            @user = User.find(session[:id])
+            @job = User.find(session[:id]).jobs.find(params[:id])
+        else
+            redirect_to '/'
+        end
+    end
+
     def edit
         @user = User.find(session[:id])
     end
