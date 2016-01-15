@@ -3,10 +3,10 @@
         <div class="container">
             <form class="" action="/users" method="post">
                 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
-                <input type="text" name="user[first_name]" placeholder="First Name"/>
-                <input type="text" name="user[last_name]" placeholder="Last Name"/>
-                <input type="email" name="user[email]" placeholder="Email"/>
-                <input type="password" name="user[password]" placeholder="Password"/>
+                <input type="text" name="user[first_name]" placeholder="First Name (required)"/>
+                <input type="text" name="user[last_name]" placeholder="Last Name (required)"/>
+                <input type="email" name="user[email]" placeholder="Email (required)"/>
+                <input type="password" name="user[password]" placeholder="Password (8 characters minimum)"/>
                 <input type="password" name="user[password_confirmation]" placeholder="Confirm Password"/>
                 <div class="row">
                     <div class="col s6">
@@ -18,11 +18,13 @@
                 </div>
             </form>
             <div class="error center-align red-text flow-text">
-                <% flash.each do |name, msg| %>
-                  <% if msg.is_a?(String) %>
-                    <%= content_tag :p, msg %>
-                  <% end %>
-                <% end %>
+                <%if flash[:error]%>
+                    <% flash[:error].reverse.each do |msg| %>
+                      <% if msg.is_a?(String) %>
+                        <%= content_tag :p, msg %>
+                      <% end %>
+                    <% end %>
+                <%end%>
             </div>
         </div>
     </div>

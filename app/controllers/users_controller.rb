@@ -17,6 +17,11 @@ class UsersController < ApplicationController
         if @user && @user.authenticate(params[:password])
             session[:id] = @user.id
             redirect_to "/dashboard"
+        elsif params[:email] == ""
+            redirect_to '/login'
+        elsif @user.nil?
+            flash[:error] = "That user doesn't exist"
+            redirect_to '/login'
         else
             flash[:error] = "Email/password don't match"
             redirect_to '/login'
@@ -29,9 +34,14 @@ class UsersController < ApplicationController
     end
 
     def create
+        if params[:user][:first_name] == "" || params[:user][:last_name] == "" || params[:user][:email] == ""
+            flash[:error] = ["You must fill out the entire form"]
+            redirect_to '/create-account'
+            return
+        end
         @user = User.create(user_params)
         if @user.errors.any?
-            flash[:error] = "Invalid Registration"
+            flash[:error] = @user.errors.full_messages
             redirect_to '/create-account'
         else
             session[:id] = @user.id
