@@ -2,28 +2,28 @@
     <div class="col s12 m10 offset-m1 l8 offset-l2 card">
         <div class="container">
             <form action="/jobs" method="post">
-                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
-                <h4 class="center-align">Job Information</h4>
-
-                <div class="input-field col s12">
-                    <i class="material-icons prefix light-blue-text">business_center</i>
-                    <input type="text" name="company_name" placeholder="Company Name (required)" class="validate"/>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix light-blue-text">http</i>
-                    <label class="active" for="comp_url">Company URL</label>
-                    <input type="text" id="comp_url" name="company_url" placeholder="http://"/>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix light-blue-text">person</i>
-                    <input type="text" name="position" placeholder="Position Title" class="validate"/>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix light-blue-text">insert_drive_file</i>
-                    <label class="active" for="app_url">Application URL</label>
-                    <input type="text" id="app_url" name="application_url" placeholder="http://"/>
-                </div>
                 <div class="row">
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+                    <h4 class="center-align">Job Information</h4>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix light-blue-text">business_center</i>
+                        <input type="text" name="company_name" placeholder="Company Name (required)" class="validate"/>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix light-blue-text">http</i>
+                        <label class="active" for="comp_url">Company URL</label>
+                        <input type="text" id="comp_url" name="company_url" placeholder="http://"/>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix light-blue-text">person</i>
+                        <input type="text" name="position" placeholder="Position Title" class="validate"/>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix light-blue-text">insert_drive_file</i>
+                        <label class="active" for="app_url">Application URL</label>
+                        <input type="text" id="app_url" name="application_url" placeholder="http:// (required)"/>
+                    </div>
                     <div class="input-field col s7">
                         <i class="material-icons prefix light-blue-text">place</i>
                         <input type="text" name="city" placeholder="City" class="validate"/>

@@ -62,6 +62,10 @@ class UsersController < ApplicationController
         end
     end
 
+    def show_archived
+        @user = User.find(session[:id])
+    end
+
     def edit
         @user = User.find(session[:id])
     end

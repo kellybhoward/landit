@@ -1,0 +1,39 @@
+<div class="welcome row">
+    <div class="col s12 m9">
+        <h4>Welcome, <%= @user.first_name%></h4>
+        <p>(not <%= @user.first_name%>? login <a href="/login">here</a>)</p>
+    </div>
+
+
+</div>
+<div class="row">
+    <div class="col s6">
+        <a href="/logout"><button type="button" class="btn large orange lighten-1" name="logout">Logout</button></a>
+    </div>
+    <div class="col s6">
+        <a href="/add-job"><button type="button" class="btn large light-blue darken-3 right" name="logout">Add job</button></a>
+        <a class="btn-floating deep-purple lighten-2 tooltipped right archive" data-position="top" data-delay="50" data-tooltip="Dashboard" href="/dashboard"><i class="material-icons">dashboard</i></a>
+    </div>
+</div>
+<hr>
+<div class="row jobs">
+    <% if @user.jobs.empty?%>
+        <h4 class="center-align">Nothing Archived Yet</h4>
+    <% else %>
+        <div class="col s12 m6 offset-m3">
+            <h4 class="center-align">Archives</h4>
+            <div class="collection">
+                <% @user.jobs.sort.reverse.each do |job|%>
+                    <% if job.archived == true %>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+});
+</script>

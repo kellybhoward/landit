@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/logout' => 'users#logout'
 
     get '/dashboard' => 'users#show'
+    get '/archived-jobs' => 'users#show_archived'
     get '/create-account' => 'users#new'
     post '/users' => 'users#create'
     get '/update-account' => 'users#edit'
@@ -17,11 +18,13 @@ Rails.application.routes.draw do
     get '/add-job' => 'jobs#new'
     post '/jobs' => 'jobs#create'
     get '/jobs/:id/edit' => 'jobs#edit'
+
     patch '/jobs/reject/:id' => 'jobs#update_reject'
     patch '/jobs/research/:id' => 'jobs#update_research'
     patch '/jobs/progress/:id' => 'jobs#update_progress'
     patch '/jobs/information/:id' => 'jobs#update_info'
     patch '/jobs/offer/:id' => 'jobs#update_offer'
+    patch '/jobs/archive/:id' => 'jobs#update_archive'
     delete '/jobs/:id' => 'jobs#destroy'
 
     get '/dashboard/cover_letter' => 'main#cover_letter'

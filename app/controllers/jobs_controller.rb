@@ -5,13 +5,23 @@ class JobsController < ApplicationController
     end
 
     def create
+        # get state and user
+        print params
         if params[:state]
             @state = State.find(params[:state])
         end
         @user = User.find(session[:id])
+        # check if the application url is unique, if not, send error message
+        @user.jobs.each do |job|
+            if job.application_url == params[:application_url]
+                flash[:error] = "You have already added a job with that application."
+                redirect_to '/add-job'
+                return
+            end
+        end
         @job = Job.create(company_name:params[:company_name], company_url:params[:company_url], position:params[:position], application_url:params[:application_url], city:params[:city], state:@state, user:@user)
         if @job.errors.any?
-            flash[:error] = "Please fill out required fields"
+            flash[:error] = "Please include an application URL"
             redirect_to '/add-job'
         else
             redirect_to "/dashboard"
@@ -54,6 +64,10 @@ class JobsController < ApplicationController
 
     def update_reject
         update_rejected_job
+    end
+
+    def update_archive
+        update_archive_job
     end
 
     def destroy
@@ -122,6 +136,16 @@ class JobsController < ApplicationController
             @job.update_attribute(:accept, false)
             redirect_to '/dashboard'
         end
+
+        def update_archive_job
+            if @job.archived == true
+                @job.update_attribute(:archived, false)
+            elsif @job.archived == false
+                @job.update_attribute(:archived, true)
+            end
+            redirect_to '/dashboard'
+        end
+
         def update_info_job
             @job.update_attribute(:company_name, params[:company_name])
             @job.update_attribute(:company_url, params[:company_url])

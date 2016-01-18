@@ -12,6 +12,7 @@
     </div>
     <div class="col s6">
         <a href="/add-job"><button type="button" class="btn large light-blue darken-3 right" name="logout">Add job</button></a>
+        <a class="btn-floating deep-purple lighten-1 tooltipped right archive" data-position="top" data-delay="50" data-tooltip="Archived Jobs" href="/archived-jobs"><i class="material-icons">query_builder</i></a>
     </div>
 </div>
 <hr>
@@ -27,7 +28,7 @@
             <h4 class="center-align">Need to Apply</h4>
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
-                    <% if (job.apply.nil? || job.apply == false) && (job.offer.nil? || job.offer == false) %>
+                    <% if (job.apply.nil? || job.apply == false) && (job.offer.nil? || job.offer == false) && job.archived == false %>
                         <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
                     <% end %>
                 <% end %>
@@ -37,7 +38,7 @@
             <h4 class="center-align">Applied</h4>
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
-                    <% if job.apply && job.apply == true && (job.offer.nil? || job.offer == false) %>
+                    <% if job.apply && job.apply == true && (job.offer.nil? || job.offer == false) && job.archived == false %>
                         <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
                     <% end %>
                 <% end %>
@@ -47,7 +48,7 @@
             <h4 class="center-align">Got an Offer</h4>
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
-                    <% if job.offer && job.offer == true %>
+                    <% if job.offer && job.offer == true && job.archived == false %>
                         <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
                     <% end %>
                 <% end %>
@@ -57,14 +58,6 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('select').material_select();
-    $('.collapsible').collapsible({
-        accordion : false
-    });
-    $('.datepicker').pickadate({
-        selectMonths: true,
-        selectYears: 15
-    });
     $('.tooltipped').tooltip({delay: 50});
 });
 </script>

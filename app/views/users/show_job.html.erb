@@ -20,7 +20,7 @@
         <% else %>
             <ul class="collapsible hoverable flow-text" data-collapsible="expandable">
                 <li>
-                    <% if (@job.apply.nil? || @job.apply == false) && (@job.offer.nil? || @job.offer == false) %>
+                    <% if (@job.apply.nil? || @job.apply == false) && (@job.offer.nil? || @job.offer == false)%>
                         <div class="active collapsible-header orange lighten-2">
                     <%else%>
                         <div class="collapsible-header orange lighten-2">
@@ -150,12 +150,22 @@
                                 <textarea id="interview_notes<%=@job.id%>" class="materialize-textarea" name="interview_notes" rows="8" cols="40"><%=@job.interview_notes%></textarea>
                             </div>
                             <input type="submit" class="small btn green right" name="update" value="Save"/>
-                            <div class="clear space"></div>
+                        </form>
+                        <form action="/jobs/archive/<%=@job.id%>" method="post">
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+                            <input type="hidden" name="_method" value="patch"/>
+                            <%if @job.archived == true%>
+                                <input type="submit" class="small btn orange tooltipped" data-position="top" data-delay="50" data-tooltip="Unarchive" name="archive" value="Unarchive"/>
+                                <div class="space"></div>
+                            <%else%>
+                                <input type="submit" class="small btn orange tooltipped" data-position="top" data-delay="50" data-tooltip="Save in Archive" name="archive" value="Rejected"/>
+                                <div class="space"></div>
+                            <%end%>
                         </form>
                     </div>
                 </li>
                 <li>
-                <% if @job.offer %>
+                <% if @job.offer%>
                     <div class="active collapsible-header light-blue lighten-2">
                 <%else%>
                     <div class="collapsible-header light-blue lighten-2">
@@ -195,8 +205,22 @@
                                 </p>
                             <% end %>
                             <input type="submit" class="small btn green right" name="update" value="Save"/>
+                        <%if @job.offer == true%>
+                            </form>
+                            <form action="/jobs/archive/<%=@job.id%>" method="post">
+                                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+                                <input type="hidden" name="_method" value="patch"/>
+                                <%if @job.archived == true%>
+                                    <input type="submit" class="small btn orange tooltipped" data-position="top" data-delay="50" data-tooltip="Unarchive" name="archive" value="Unarchive"/>
+                                <%else%>
+                                    <input type="submit" class="small btn orange tooltipped" data-position="top" data-delay="50" data-tooltip="Save in Archive" name="archive" value="Decline"/>
+                                <%end%>
+                                <div class="space"></div>
+                            </form>
+                        <%else%>
                             <div class="clear space"></div>
-                        </form>
+                            </form>
+                        <%end%>
                     </div>
                 </li>
             </ul>
