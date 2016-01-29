@@ -1,28 +1,20 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LandIT is an open-source Job Search Organizer. Feel free to fork it and add features that you'd like to see on your own job search application.
 
-Things you may want to cover:
+Current Features:
 
-* Ruby version
+* Add Job Info
 
-* System dependencies
+* Update Job status (applied, rejected, offer, accept offer)
 
-* Configuration
+* Edit Personal Info (email, name)
 
-* Database creation
+* Separation for Need to Apply, Applied, Offer, Rejected/Archived
 
-* Database initialization
+* Placeholder pages for Cover Letter advice and Salary Comparison
 
-* How to run the test suite
+* Currently deployed on AWS with Nginx and PostgreSQL
 
-* Services (job queues, cache servers, search engines, etc.)
+* landit.kellybhoward.com
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
