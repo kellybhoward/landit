@@ -29,7 +29,7 @@
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
                     <% if (job.apply.nil? || job.apply == false) && (job.offer.nil? || job.offer == false) && job.archived == false %>
-                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%><span><%if job.state%><%=job.state.state_code%><%end%></span></a>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=truncate(job.company_name, :length => 15)%><span><%if job.state%><%=job.state.state_code%><%end%></span></a>
                     <% end %>
                 <% end %>
             </div>
@@ -39,7 +39,7 @@
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
                     <% if job.apply && job.apply == true && (job.interview.nil? || job.interview == false) && (job.offer.nil? || job.offer == false) && job.archived == false %>
-                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%><span><%if job.state%><%=job.state.state_code%><%end%></span></a>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=truncate(job.company_name, :length => 15)%><span><%if job.state%><%=job.state.state_code%><%end%></span></a>
                     <% end %>
                 <% end %>
             </div>
@@ -49,7 +49,7 @@
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
                     <% if job.interview && job.interview == true && (job.offer.nil? || job.offer == false) && job.archived == false %>
-                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%><span><%if job.state%><%=job.state.state_code%><%end%></span></a>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=truncate(job.company_name, :length => 15)%><span><%if job.state%><%=job.state.state_code%><%end%></span></a>
                     <% end %>
                 <% end %>
             </div>
@@ -59,7 +59,7 @@
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
                     <% if job.offer && job.offer == true && job.archived == false %>
-                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%><span><%if job.state%><%=job.state.state_code%><%end%></span></a>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=truncate(job.company_name, :length => 15)%><span><%if job.state%><%=job.state.state_code%><%end%></span></a>
                     <% end %>
                 <% end %>
             </div>
