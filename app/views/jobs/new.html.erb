@@ -32,6 +32,9 @@
                         <select name="state" class="validate">
                             <option value="" disabled selected>Choose State</option>
                             <% @states.each do |state| %>
+                                <%if state.state_name === '0 International'%>
+                                    <% state.state_name = 'International'%>
+                                <%end%>
                                 <option class="light-blue-text" value="<%=state.id%>"><%=state.state_name%></option>
                             <% end %>
                         </select>

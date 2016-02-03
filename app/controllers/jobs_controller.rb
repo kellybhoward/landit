@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
     before_action :require_login
     def new
-        @states = State.all
+        @states = State.order('state_name ASC')
     end
 
     def create
@@ -29,7 +29,7 @@ class JobsController < ApplicationController
     end
 
     def edit
-        @states = State.all
+        @states = State.order('state_name ASC')
         if correct_user_for_job
             @job = Job.find(params[:id])
         else

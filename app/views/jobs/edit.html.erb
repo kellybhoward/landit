@@ -16,6 +16,9 @@
                     <div class="input-field col s5">
                         <select name="state" class="validate">
                             <% @states.each do |state| %>
+                                <%if state.state_name === '0 International'%>
+                                    <% state.state_name = 'International'%>
+                                <%end%>
                                 <% if state == @job.state %>
                                     <option class="light-blue-text" value="<%=state.id%>" selected><%=state.state_name%></option>
                                 <%else%>
