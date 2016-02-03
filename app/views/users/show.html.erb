@@ -24,32 +24,42 @@
             <a class="btn-floating light-blue darken-3" href="/add-job"><i class="material-icons">add</i></a>
         </p>
     <% else %>
-        <div class="col s12 m6 l4">
+        <div class="col s12 m6 l3">
             <h4 class="center-align">Need to Apply</h4>
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
                     <% if (job.apply.nil? || job.apply == false) && (job.offer.nil? || job.offer == false) && job.archived == false %>
-                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%><span><%=job.state.state_code%></span></a>
                     <% end %>
                 <% end %>
             </div>
         </div>
-        <div class="col s12 m6 l4">
+        <div class="col s12 m6 l3">
             <h4 class="center-align">Applied</h4>
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
-                    <% if job.apply && job.apply == true && (job.offer.nil? || job.offer == false) && job.archived == false %>
-                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
+                    <% if job.apply && job.apply == true && (job.interview.nil? || job.interview == false) && (job.offer.nil? || job.offer == false) && job.archived == false %>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%><span><%=job.state.state_code%></span></a>
                     <% end %>
                 <% end %>
             </div>
         </div>
-        <div class="col s12 m6 l4">
+        <div class="col s12 m6 l3">
+            <h4 class="center-align">Interviewing</h4>
+            <div class="collection">
+                <% @user.jobs.sort.reverse.each do |job|%>
+                    <% if job.interview && job.interview == true && (job.offer.nil? || job.offer == false) && job.archived == false %>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%><span><%=job.state.state_code%></span></a>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <div class="col s12 m6 l3">
             <h4 class="center-align">Got an Offer</h4>
             <div class="collection">
                 <% @user.jobs.sort.reverse.each do |job|%>
                     <% if job.offer && job.offer == true && job.archived == false %>
-                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%></a>
+                        <a href="/job-details/<%=job.id%>" class="collection-item flow-text"><%=job.company_name%><span><%=job.state.state_code%></span></a>
                     <% end %>
                 <% end %>
             </div>

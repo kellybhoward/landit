@@ -132,12 +132,12 @@
                             <% end %>
                             <% if @job.interview %>
                                 <p>
-                                    <input type="checkbox" id="interview<%=@job.id%>" checked="checked" name="confirmation"/>
+                                    <input type="checkbox" id="interview<%=@job.id%>" checked="checked" name="interview"/>
                                     <label for="interview<%=@job.id%>">Asked to Interview</label>
                                 </p>
                             <% else%>
                                 <p>
-                                    <input type="checkbox" id="interview<%=@job.id%>" name="confirmation" value=""/>
+                                    <input type="checkbox" id="interview<%=@job.id%>" name="interview"/>
                                     <label for="interview<%=@job.id%>">Asked to Interview</label>
                                 </p>
                             <% end %>
