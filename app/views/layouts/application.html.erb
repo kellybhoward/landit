@@ -35,12 +35,16 @@
                 <ul>
                     <li><a class="btn-floating orange tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Account Info" href="/update-account"><i class="material-icons">perm_identity</i></a></li>
                     <li><a href="/dashboard/compare_salaries" class="btn-floating yellow darken-1 tooltipped" data-position="top" data-delay="50" data-tooltip="Compare Salaries"><i class="material-icons">insert_chart</i></a></li>
-                    <li><a href="/dashboard/cover_letter" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Tips on Cover Letter"><i class="material-icons">description</i></a></li>
+                    <li><a href="/dashboard/cover_letter_tips" class="btn-floating green tooltipped" data-position="top" data-delay="50" data-tooltip="Tips on Cover Letter"><i class="material-icons">description</i></a></li>
+                    <li><a class="btn-floating deep-purple lighten-2 tooltipped" data-position="top" data-delay="50" data-tooltip="Dashboard" href="/dashboard"><i class="material-icons">view_quilt</i></a></li>
                     <li><a class="btn-floating light-blue darken-3 tooltipped" data-position="top" data-delay="50" data-tooltip="Add a Job" href="/add-job"><i class="material-icons">add</i></a></li>
                 </ul>
             </div>
         <% end %>
         <div class="container">
+            <div id="toTop">
+                <a href="#top"><i class="material-icons small">keyboard_arrow_up</i></a>
+            </div>
             <%= yield %>
         </div>
     </main>

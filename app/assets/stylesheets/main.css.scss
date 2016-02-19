@@ -7,6 +7,7 @@
     margin: 0px;
     padding: 0px;
 }
+$accent: #7e57c2;
 body {
     display: flex;
     min-height: 100vh;
@@ -59,6 +60,9 @@ body {
                 font-size: 1.6rem;
             }
         }
+        .fixed-action-btn.horizontal ul li{
+            margin: 10px 5px 0px 0px !important;
+        }
     }
 
 //=======================================================
@@ -67,6 +71,22 @@ body {
         flex: 1 0 auto;
         font-family: 'Raleway', sans-serif;
         padding-top: 10px;
+        #toTop{
+            display: none;
+            background-color: $accent;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin-right: -5px;
+            margin-bottom: 120px;
+            padding: 0px 3px;
+            z-index: 10;
+            border-radius: 5px;
+            text-align: center;
+            i{
+                color: white !important;
+            }
+        }
         .container{
             width: 95% !important
         }
@@ -146,6 +166,36 @@ body {
         .archive{
             margin-right: 10px;
         }
+        ol{
+            list-style-position: inside;
+            padding: 0px 15px;
+            li{
+                margin: 10px 0px;
+            }
+        }
+        .example_text{
+            background-color: rgba(201, 200, 210, 0.65);
+            padding: 20px;
+            p{
+                margin: 0px;
+            }
+            h6{
+                margin-top: 20px;
+            }
+        }
+        .template_steps{
+            margin: 20px 0px;
+        }
+        .table-of-contents a.active{
+            border-left: 2px solid $accent !important;
+        }
+        .table-of-contents a:hover{
+            border-left: 2px solid rgb(109, 100, 166) !important;
+        }
+        section p{
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
     }
 
 //=======================================================
@@ -187,7 +237,10 @@ body {
         }
         form{
             display: inline-block;
-            vertical-align: bottom;
+        }
+        input[type='image']{
+            margin-bottom: -5px;
+            margin-left: 5px;
         }
     }
 }

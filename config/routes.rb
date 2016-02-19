@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     patch '/jobs/archive/:id' => 'jobs#update_archive'
     delete '/jobs/:id' => 'jobs#destroy'
 
-    get '/dashboard/cover_letter' => 'main#cover_letter'
+    get '/dashboard/cover_letter_tips' => 'main#cover_letter_tips'
     get '/dashboard/compare_salaries' => 'main#salaries'
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".

@@ -6,7 +6,7 @@ class MainController < ApplicationController
             redirect_to '/dashboard'
         end
     end
-    def cover_letter
+    def cover_letter_tips
     end
     def salaries
     end
