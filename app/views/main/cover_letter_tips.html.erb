@@ -171,20 +171,20 @@
                     </div>
                 </section>
                 <hr>
-                <section id="sample" class="section scrollspy template_steps">
+                <section id="sample" class="last-one section scrollspy template_steps">
                     <h4>Sample Summary</h4>
                     <p class="flow-text">
                         That's a wrap. Now you're fully equipped to tackle the not-so-fun job of cover-letter writing. Here's a sample cover letter template that you are welcome to use.
                     </p>
-                    <div class="center-align">
+                    <div class="center-align space">
                         <a href="https://www.dropbox.com/s/yrulq4cqpm1i1an/Cover%20Letter%20Template%20-%20Land%20IT.pdf?dl=0" target="_blank"><button type="button" name="downloadTemplate" class="btn deep-purple">Download Cover Letter Template</button></a>
                     </div>
                 </section>
             </div>
         </div>
     </div>
-    <div class="col hide-on-small-only m3 l2 fixed">
-      <ul class="section table-of-contents fixed">
+    <div class="col hide-on-small-only m3 l2">
+      <ul class="section table-of-contents tabs-wrapper">
         <li><a href="#tips">Cover Letter Tips</a></li>
         <li><a href="#template">Basic Template</a></li>
         <li><a href="#clHeader">Header</a></li>
@@ -202,6 +202,8 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $('.tabs-wrapper').pushpin({ top: $('.tabs-wrapper').offset().top });
         $('.scrollspy').scrollSpy();
+        $('.tooltipped').tooltip({delay: 50});
     });
 </script>
